@@ -16,14 +16,14 @@
         }
         header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px;
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         header img {
-            width: 100px;
+            width: 50px;
+            margin-right: 10px;
         }
         .container {
             max-width: 800px;
@@ -85,11 +85,11 @@
 <body>
     <header>
         <img src="LOGO.png" alt="Logo">
-        <img src="2.png" alt="Logo 2">
+        <img src="2.png" alt="Logo 2">        
     </header>
 
     <div class="container">
-        <h1>Test de los 5 lenguajes del amor.</h1>
+        <h1>Test de los 5 Lenguajes del Amor</h1>
         <p>El test de los 5 lenguajes del amor, desarrollado por Gary Chapman, ayuda a identificar cómo prefieres dar y recibir amor. Responde honestamente a las siguientes preguntas, eligiendo la opción que más te represente. Anota tus respuestas y al final se te indicará cómo identificar tu lenguaje principal.</p>
 
         <form id="quiz-form">
@@ -144,56 +144,44 @@
         <div id="result" class="result" style="display: none;"></div>
     </div>
 
-    <footer>
-        <img src="2.png" alt="Footer Logo">
-    </footer>
-
     <script>
         function calculateResult() {
-    const form = document.getElementById('quiz-form');
-    const formData = new FormData(form);
-    const answers = {};
+            const form = document.getElementById('quiz-form');
+            const formData = new FormData(form);
+            const answers = {};
 
-    // Inicializar contadores para cada opción
-    ['a', 'b', 'c', 'd', 'e'].forEach(letter => answers[letter] = 0);
+            // Initialize counts for each letter
+            ['a', 'b', 'c', 'd', 'e'].forEach(letter => answers[letter] = 0);
 
-    // Verificar si todas las preguntas tienen respuesta
-    const totalQuestions = document.querySelectorAll('.question').length;
-    let answeredQuestions = 0;
+            // Count the answers
+            for (const [key, value] of formData.entries()) {
+                if (value) answers[value]++;
+            }
 
-    for (const [key, value] of formData.entries()) {
-        if (value) {
-            answers[value]++;
-            answeredQuestions++;
+            // Determine the highest count
+            const max = Math.max(...Object.values(answers));
+            const topLanguages = Object.keys(answers).filter(letter => answers[letter] === max);
+
+            // Map letters to descriptions
+            const descriptions = {
+                'a': 'Palabras de afirmación',
+                'b': 'Contacto físico',
+                'c': 'Recibir regalos',
+                'd': 'Tiempo de calidad',
+                'e': 'Actos de servicio'
+            };
+
+            // Generate the result text
+            const resultDiv = document.getElementById('result');
+            if (topLanguages.length === 1) {
+                resultDiv.innerHTML = `<strong>Tu lenguaje principal del amor es:</strong> ${descriptions[topLanguages[0]]}.`;
+            } else {
+                const langs = topLanguages.map(letter => descriptions[letter]).join(' y ');
+                resultDiv.innerHTML = `<strong>Tus lenguajes principales del amor son:</strong> ${langs}.`;
+            }
+
+            resultDiv.style.display = 'block';
         }
-    }
-
-    if (answeredQuestions < totalQuestions) {
-        alert('Por favor, responde todas las preguntas antes de ver los resultados.');
-        return;
-    }
-
-    // Determinar el máximo de respuestas
-    const max = Math.max(...Object.values(answers));
-    const topLanguages = Object.keys(answers).filter(letter => answers[letter] === max);
-
-    // Mapear letras a descripciones
-    const descriptions = {
-        'a': 'Palabras de afirmación',
-        'b': 'Contacto físico',
-        'c': 'Recibir regalos',
-        'd': 'Tiempo de calidad',
-        'e': 'Actos de servicio'
-    };
-
-    // Generar el texto del resultado
-    const resultDiv = document.getElementById('result');
-    if (topLanguages.length === 1) {
-        resultDiv.innerHTML = `<strong>Tu lenguaje principal del amor es:</strong> ${descriptions[topLanguages[0]]}.`;
-    } else {
-        const langs = topLanguages.map(letter => descriptions[letter]).join(' y ');
-        resultDiv.innerHTML = `<strong>Tus lenguajes principales del amor son:</strong> ${langs}.`;
-    }
-
-    resultDiv.style.display = 'block';
-}
+    </script>
+</body>
+</html>
