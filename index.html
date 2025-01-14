@@ -149,42 +149,50 @@
 
     <script>
         function calculateResult() {
-            const form = document.getElementById('quiz-form');
-            const formData = new FormData(form);
-            const answers = {};
+    const form = document.getElementById('quiz-form');
+    const formData = new FormData(form);
+    const answers = {};
 
-            // Initialize counts for each letter
-            ['a', 'b', 'c', 'd', 'e'].forEach(letter => answers[letter] = 0);
+    // Inicializar contadores para cada opción
+    ['a', 'b', 'c', 'd', 'e'].forEach(letter => answers[letter] = 0);
 
-            // Count the answers
-            for (const [key, value] of formData.entries()) {
-                if (value) answers[value]++;
-            }
+    // Verificar si todas las preguntas tienen respuesta
+    const totalQuestions = document.querySelectorAll('.question').length;
+    let answeredQuestions = 0;
 
-            // Determine the highest count
-            const max = Math.max(...Object.values(answers));
-            const topLanguages = Object.keys(answers).filter(letter => answers[letter] === max);
-
-            // Map letters to descriptions
-            const descriptions = {
-                'a': 'Palabras de afirmación',
-                'b': 'Contacto físico',
-                'c': 'Recibir regalos',
-                'd': 'Tiempo de calidad',
-                'e': 'Actos de servicio'
-            };
-
-            // Generate the result text
-            const resultDiv = document.getElementById('result');
-            if (topLanguages.length === 1) {
-                resultDiv.innerHTML = `<strong>Tu lenguaje principal del amor es:</strong> ${descriptions[topLanguages[0]]}.`;
-            } else {
-                const langs = topLanguages.map(letter => descriptions[letter]).join(' y ');
-                resultDiv.innerHTML = `<strong>Tus lenguajes principales del amor son:</strong> ${langs}.`;
-            }
-
-            resultDiv.style.display = 'block';
+    for (const [key, value] of formData.entries()) {
+        if (value) {
+            answers[value]++;
+            answeredQuestions++;
         }
-    </script>
-</body>
-</html>
+    }
+
+    if (answeredQuestions < totalQuestions) {
+        alert('Por favor, responde todas las preguntas antes de ver los resultados.');
+        return;
+    }
+
+    // Determinar el máximo de respuestas
+    const max = Math.max(...Object.values(answers));
+    const topLanguages = Object.keys(answers).filter(letter => answers[letter] === max);
+
+    // Mapear letras a descripciones
+    const descriptions = {
+        'a': 'Palabras de afirmación',
+        'b': 'Contacto físico',
+        'c': 'Recibir regalos',
+        'd': 'Tiempo de calidad',
+        'e': 'Actos de servicio'
+    };
+
+    // Generar el texto del resultado
+    const resultDiv = document.getElementById('result');
+    if (topLanguages.length === 1) {
+        resultDiv.innerHTML = `<strong>Tu lenguaje principal del amor es:</strong> ${descriptions[topLanguages[0]]}.`;
+    } else {
+        const langs = topLanguages.map(letter => descriptions[letter]).join(' y ');
+        resultDiv.innerHTML = `<strong>Tus lenguajes principales del amor son:</strong> ${langs}.`;
+    }
+
+    resultDiv.style.display = 'block';
+}
