@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test de los 5 Lenguajes del Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 100px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #bb3533;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #bb3533;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #a22e2b;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fbe8e8;
+            border-left: 5px solid #bb3533;
+        }
+        footer {
+            text-align: right;
+            margin-top: 20px;
+        }
+        footer img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="LOGO.png" alt="Logo">
+        <img src="2.png" alt="Logo 2">
+    </header>
+
+    <div class="container">
+        <p>El test de los 5 lenguajes del amor, desarrollado por Gary Chapman, ayuda a identificar cómo prefieres dar y recibir amor. Responde honestamente a las siguientes preguntas, eligiendo la opción que más te represente. Anota tus respuestas y al final se te indicará cómo identificar tu lenguaje principal.</p>
+
+        <form id="quiz-form">
+            <div class="question">
+                <h3>1. Me siento más amado(a) cuando:</h3>
+                <label><input type="radio" name="q1" value="a"> Alguien me dice palabras amables o cumplidos.</label>
+                <label><input type="radio" name="q1" value="b"> Me abraza o me toca con cariño.</label>
+                <label><input type="radio" name="q1" value="c"> Alguien me da un regalo significativo.</label>
+                <label><input type="radio" name="q1" value="d"> Pasan tiempo de calidad conmigo.</label>
+                <label><input type="radio" name="q1" value="e"> Me ayudan con una tarea o algo que necesito.</label>
+            </div>
+
+            <div class="question">
+                <h3>2. Prefiero que mis seres queridos:</h3>
+                <label><input type="radio" name="q2" value="a"> Me escriban o diga algo que me haga sentir especial.</label>
+                <label><input type="radio" name="q2" value="b"> Me toquen con cariño, como abrazos o caricias.</label>
+                <label><input type="radio" name="q2" value="c"> Me sorprendan con un regalo sin motivo especial.</label>
+                <label><input type="radio" name="q2" value="d"> Planee una cita o pase tiempo significativo conmigo.</label>
+                <label><input type="radio" name="q2" value="e"> Haga algo práctico por mí, como ayudar con las tareas.</label>
+            </div>
+
+            <div class="question">
+                <h3>3. En un mal día, me reconforta más:</h3>
+                <label><input type="radio" name="q3" value="a"> Escuchar palabras de apoyo y ánimo.</label>
+                <label><input type="radio" name="q3" value="b"> Recibir un abrazo fuerte.</label>
+                <label><input type="radio" name="q3" value="c"> Un regalo que demuestre que pensaron en mí.</label>
+                <label><input type="radio" name="q3" value="d"> Que alguien pase tiempo conmigo sin distracciones.</label>
+                <label><input type="radio" name="q3" value="e"> Que alguien me ayude con algo que me preocupa.</label>
+            </div>
+
+            <div class="question">
+                <h3>4. En una relación de pareja, valoro más:</h3>
+                <label><input type="radio" name="q4" value="a"> Palabras de afirmación y elogio.</label>
+                <label><input type="radio" name="q4" value="b"> Contacto físico frecuente.</label>
+                <label><input type="radio" name="q4" value="c"> Regalos significativos o sorpresas.</label>
+                <label><input type="radio" name="q4" value="d"> Tiempo de calidad y atención.</label>
+                <label><input type="radio" name="q4" value="e"> Actos de servicio desinteresados.</label>
+            </div>
+
+            <div class="question">
+                <h3>5. Para sentirme amado(a):</h3>
+                <label><input type="radio" name="q5" value="a"> Necesito escuchar que soy valorado(a).</label>
+                <label><input type="radio" name="q5" value="b"> Necesito contacto físico frecuente.</label>
+                <label><input type="radio" name="q5" value="c"> Necesito recibir regalos con significado.</label>
+                <label><input type="radio" name="q5" value="d"> Necesito tiempo de calidad con la otra persona.</label>
+                <label><input type="radio" name="q5" value="e"> Necesito que me ayuden en mis responsabilidades.</label>
+            </div>
+
+            <button type="button" class="button" onclick="calculateResult()">Ver resultados</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <img src="2.png" alt="Footer Logo">
+    </footer>
+
+    <script>
+        function calculateResult() {
+            const form = document.getElementById('quiz-form');
+            const formData = new FormData(form);
+            const answers = {};
+
+            // Initialize counts for each letter
+            ['a', 'b', 'c', 'd', 'e'].forEach(letter => answers[letter] = 0);
+
+            // Count the answers
+            for (const [key, value] of formData.entries()) {
+                if (value) answers[value]++;
+            }
+
+            // Determine the highest count
+            const max = Math.max(...Object.values(answers));
+            const topLanguages = Object.keys(answers).filter(letter => answers[letter] === max);
+
+            // Map letters to descriptions
+            const descriptions = {
+                'a': 'Palabras de afirmación',
+                'b': 'Contacto físico',
+                'c': 'Recibir regalos',
+                'd': 'Tiempo de calidad',
+                'e': 'Actos de servicio'
+            };
+
+            // Generate the result text
+            const resultDiv = document.getElementById('result');
+            if (topLanguages.length === 1) {
+                resultDiv.innerHTML = `<strong>Tu lenguaje principal del amor es:</strong> ${descriptions[topLanguages[0]]}.`;
+            } else {
+                const langs = topLanguages.map(letter => descriptions[letter]).join(' y ');
+                resultDiv.innerHTML = `<strong>Tus lenguajes principales del amor son:</strong> ${langs}.`;
+            }
+
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
